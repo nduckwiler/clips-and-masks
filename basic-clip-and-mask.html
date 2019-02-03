@@ -1,0 +1,140 @@
+<html>
+<head>
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css">
+<style>
+svg {border: dotted 1px grey}
+textarea {font-family:monospace}
+</style>
+</head>
+<body>
+<h1>Clipping</h1>
+
+
+<p>clipPath is a rect</p>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="cut-off-bottom">
+      <rect x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+  <rect x="0" y="0" width="200" height="100" />
+
+  <!-- <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" /> -->
+</svg>
+
+<p>Element to draw is a circle</p>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="cut-off-bottom">
+      <rect x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+
+  <circle cx="100" cy="100" r="100"  />
+</svg>
+
+<p>Only that part of the circle within the clipPath is visible.
+  In other words, the rect's pixel data will be used to determine which pixels of the circle "make it" to the final rendering.
+</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Clipping_and_masking" target="_blank">Source: MDN</a></p>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="cut-off-bottom">
+      <rect x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+
+  <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+</svg>
+
+<br>
+
+<div>
+
+  <pre><code class="HTML">&lt;svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  &lt;defs>
+    &lt;clipPath id="cut-off-bottom">
+      &lt;rect x="0" y="0" width="200" height="100" />
+    &lt;/clipPath>
+  &lt;/defs>
+
+  &lt;circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+&lt;/svg>
+</pre></code>
+</div>
+
+
+<h1>Masking</h1>
+
+
+
+<p>Make an SVG with a green background</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="green"  />
+
+</svg>
+
+<p>mask is a white rect with a transparent-to-opaque gradient</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="Gradient">
+      <stop offset="0" stop-color="white" stop-opacity="0" />
+      <stop offset="1" stop-color="white" stop-opacity="1" />
+    </linearGradient>
+    <mask id="Mask">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="green"  />
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+
+</svg>
+
+<p>The element to mask is a red rect</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+  </defs>
+
+  <rect x="0" y="0" width="200" height="200" fill="red" />
+</svg>
+
+<p>Apply mask to red rect. Note that the color of mask does not matter.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="Gradient">
+      <stop offset="0" stop-color="white" stop-opacity="0" />
+      <stop offset="1" stop-color="white" stop-opacity="1" />
+    </linearGradient>
+    <mask id="Mask">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+    </mask>
+  </defs>
+
+  <rect x="0" y="0" width="200" height="200" fill="red" mask="url(#Mask)" />
+</svg>
+
+<p>Put the masked red rect on the the green rect background</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="Gradient">
+      <stop offset="0" stop-color="white" stop-opacity="0" />
+      <stop offset="1" stop-color="white" stop-opacity="1" />
+    </linearGradient>
+    <mask id="Mask">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+    </mask>
+  </defs>
+
+  <rect x="0" y="0" width="200" height="200" fill="green" />
+  <rect x="0" y="0" width="200" height="200" fill="red" mask="url(#Mask)" />
+</svg>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+<html>

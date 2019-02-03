@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet"
+  href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css">
+<style>
+svg {border: dotted 1px grey}
+textarea {font-family:monospace}
+
+#moving{
+  animation-name: back-and-forth;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes back-and-forth {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(100px);
+  }
+}
+</style>
+</head>
+<body>
+<h1>Moving clips</h1>
+<p>In the static version, a clipPath is defined as a rectangle. The clipPath is applied to the
+  circle, so that only the top half of the circle is rendered.</p>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="cut-off-bottom-1">
+      <rect x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+
+  <circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom-1)" />
+</svg>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+  </defs>
+
+  <circle cx="100" cy="100" r="100" />
+  <rect x="0" y="0" width="200" height="100" fill="aquamarine" opacity="0.5"/>
+</svg>
+
+<div>
+  <pre><code class="HTML">
+&lt;svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  &lt;defs>
+    &lt;clipPath id="cut-off-bottom">
+      &lt;rect x="0" y="0" width="200" height="100" />
+    &lt;/clipPath>
+  &lt;/defs>
+
+  &lt;circle cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom)" />
+&lt;/svg>
+</code></pre>
+</div>
+
+<p>In the first dynamic version, the clipPath rectangle is animated, moving up and down.</p>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="moving-cut-off-bottom">
+      <rect id="moving" x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+
+  <circle cx="100" cy="100" r="100" clip-path="url(#moving-cut-off-bottom)" />
+</svg>
+
+<p>In the second dynamic version, the circle is animated, moving up and down.
+The clipPath rectangle moves in context with the circle.</p>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <clipPath id="cut-off-bottom-2">
+      <rect x="0" y="0" width="200" height="100" />
+    </clipPath>
+  </defs>
+
+  <circle id="moving" cx="100" cy="100" r="100" clip-path="url(#cut-off-bottom-2)" />
+</svg>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+<html>
