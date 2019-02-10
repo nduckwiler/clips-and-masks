@@ -4,35 +4,43 @@ window.onload = () => {
       .attr('width', '300px');
 
   d3.select('svg').on('click', function (d,i,nodes) {
-    console.log(this);
+    console.group('click:');
+    // console.log('Event listener attached to:');
+    // console.log(this);
+    console.log('Event target (what was clicked):');
     console.log(d3.event.target);
+    console.log('Event target\'s parent:');
+    console.log(d3.event.target.parentNode);
+    console.groupEnd();
+    const clickedGroup = d3.select(d3.event.target.parentNode);
 
-    const clipPathURL = d3.event.target.getAttribute('clip-path');
-    // If target has clipPath, increase its radius
+    const clipPathURL = clickedGroup.attr('clip-path');
+    // If target's parent has clipPath, increase its radius
     if (clipPathURL) {
+      console.log(`clip path found with url ${clipPathURL}. Expanding and adding another layer...`);
       const openParenIndex = clipPathURL.indexOf('(');
       const closeParenIndex = clipPathURL.indexOf(')');
       const clipPathID = clipPathURL.substring(openParenIndex + 1, closeParenIndex);
-      console.log(clipPathID);
       d3.select(clipPathID + ' circle')
           .attr('r', 250);
 
-      // Add another rect with clipPath
-      d3.select('svg')
+      // Add a nested g and rect with clipPath
+      clickedGroup
+        .append('g')
+          .attr('clip-path', 'url(#clip-2)')
         .append('rect')
           .attr('x', 0)
           .attr('y', 0)
           .attr('width', 300)
           .attr('height', 200)
           .attr('fill', 'blue')
-          .attr('clip-path', 'url(#clip-2)');
 
       d3.select('defs')
         .append('clipPath')
           .attr('id', 'clip-2')
         .append('circle')
-          .attr('cx', 100)
-          .attr('cy', 100)
+          .attr('cx', 150)
+          .attr('cy', 50)
           .attr('r', 25)
     }
 
