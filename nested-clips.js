@@ -1,4 +1,8 @@
 window.onload = () => {
+  d3.select('svg')
+      .attr('height', '200px')
+      .attr('width', '300px');
+
   d3.select('svg').on('click', function (d,i,nodes) {
     console.log(this);
     console.log(d3.event.target);
@@ -11,14 +15,14 @@ window.onload = () => {
       const clipPathID = clipPathURL.substring(openParenIndex + 1, closeParenIndex);
       console.log(clipPathID);
       d3.select(clipPathID + ' circle')
-          .attr('r', 200);
+          .attr('r', 250);
 
       // Add another rect with clipPath
       d3.select('svg')
         .append('rect')
           .attr('x', 0)
           .attr('y', 0)
-          .attr('width', 200)
+          .attr('width', 300)
           .attr('height', 200)
           .attr('fill', 'blue')
           .attr('clip-path', 'url(#clip-2)');
