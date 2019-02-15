@@ -1,0 +1,105 @@
+<html>
+<head>
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github.min.css">
+<style>
+svg {border: dotted 1px grey}
+textarea {font-family:monospace}
+</style>
+</head>
+<body>
+
+
+<h1>Masking with Radial Gradients</h1>
+
+<h2>First, radial gradients</h2>
+
+
+
+
+<p>radialGradient goes from green in the center to purple on the edges</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-1">
+      <stop offset="0" stop-color="green" stop-opacity="1" />
+      <stop offset="1" stop-color="purple" stop-opacity="1" />
+    </radialGradient>
+    <!-- <mask id="Mask">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient)"  />
+    </mask> -->
+  </defs>
+  <!-- <rect x="0" y="0" width="200" height="200" fill="green"  /> -->
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-1)"  />
+</svg>
+
+<pre><code class="HTML">&lt;svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+&lt;defs>
+  &lt;radialGradient id="Gradient-1">
+    &lt;stop offset="0" stop-color="green" stop-opacity="1" />
+    &lt;stop offset="1" stop-color="purple" stop-opacity="1" />
+  &lt;/radialGradient>
+&lt;/defs>
+
+&lt;rect x="0" y="0" width="200" height="200" fill="url(#Gradient-1)"  />
+&lt;/svg>
+</pre></code>
+
+
+<p>You can see the edges of the gradient when we add a black stop at 100%.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="green" stop-opacity="1" />
+      <stop offset="99%" stop-color="purple" stop-opacity="1" />
+      <stop offset="100%" stop-color="black" stop-opacity="1" />
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-2)"  />
+</svg>
+
+<p>Define the edges of the gradient with <code>cx</code> and <code>cy</code> attributes.</p>
+<p>Here <code>cx</code> and <code>cy</code> are each 25% (default is 50%).</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-3" cx="25%" cy="25%">
+      <stop offset="0" stop-color="green" stop-opacity="1" />
+      <stop offset="1" stop-color="purple" stop-opacity="1" />
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-3)"  />
+</svg>
+
+<p>You can further specify edges of the gradient with the <code>r</code> attribute.</p>
+<p>Here <code>r</code> is 10% (default is 50%).</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-4" cx="25%" cy="25%" r="10%">
+      <stop offset="0" stop-color="green" stop-opacity="1" />
+      <stop offset="1" stop-color="purple" stop-opacity="1" />
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-4)"  />
+</svg>
+
+<p>Here <code>r</code> is the same gradient with a black stop added at 100%</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-5" cx="25%" cy="25%" r="10%">
+      <stop offset="0%" stop-color="green" stop-opacity="1" />
+      <stop offset="95%" stop-color="purple" stop-opacity="1" />
+      <stop offset="10%" stop-color="black" stop-opacity="1" />
+    </radialGradient>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-5)"  />
+</svg>
+
+
+
+<h2>Now, radial gradients with masks </h2>
+TODO
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+<html>
