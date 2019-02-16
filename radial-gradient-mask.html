@@ -96,7 +96,146 @@ textarea {font-family:monospace}
 
 
 <h2>Now, radial gradients with masks </h2>
-TODO
+
+<p>Start with a blue rectangle.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="skyblue"  />
+</svg>
+
+<p>Add a mask to the rectangle. It's the same shape as the rectangle so nothing has changed.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+
+    <mask id="Mask-1">
+      <rect x="0" y="0" width="200" height="200" fill="white"  />
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="skyblue"  mask="url(#Mask-1)" />
+</svg>
+
+
+<p>Make the mask "partially transparent" by applying a radial gradient to the mask (which is then applied to the rectangle).</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-6">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="95%" stop-color="white" stop-opacity="1" />
+      <stop offset="10%" stop-color="white" stop-opacity="1" />
+    </radialGradient>
+
+    <mask id="Mask-2">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-6)"  />
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="skyblue" mask="url(#Mask-2)"   />
+</svg>
+
+
+<p>Get more interesting with the radial gradient.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-7">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="55%" stop-color="white" stop-opacity=".9" />
+      <stop offset="65%" stop-color="white" stop-opacity=".7" />
+      <stop offset="75%" stop-color="white" stop-opacity=".9" />
+      <stop offset="85%" stop-color="white" stop-opacity=".7" />
+      <stop offset="90%" stop-color="white" stop-opacity=".9" />
+      <stop offset="95%" stop-color="white" stop-opacity=".7" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </radialGradient>
+
+    <mask id="Mask-3">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-7)"  />
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="skyblue" mask="url(#Mask-3)" />
+</svg>
+
+
+<p>Going back, let's make the original rectangle with a radialGradient.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-8">
+      <stop offset="0%" stop-color="yellow" stop-opacity="1" />
+      <stop offset="100%" stop-color="red" stop-opacity="1" />
+    </radialGradient>
+
+
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-8)"  />
+</svg>
+
+<p>Add that interesting mask back on.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="Gradient-9">
+      <stop offset="0%" stop-color="yellow" stop-opacity="1" />
+      <stop offset="100%" stop-color="red" stop-opacity="1" />
+    </radialGradient>
+    <radialGradient id="Gradient-10">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="55%" stop-color="white" stop-opacity=".9" />
+      <stop offset="65%" stop-color="white" stop-opacity=".7" />
+      <stop offset="75%" stop-color="white" stop-opacity=".9" />
+      <stop offset="85%" stop-color="white" stop-opacity=".7" />
+      <stop offset="90%" stop-color="white" stop-opacity=".9" />
+      <stop offset="95%" stop-color="white" stop-opacity=".7" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </radialGradient>
+
+    <mask id="Mask-4">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-10)"  />
+    </mask>
+
+
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-9)" mask="url(#Mask-4)" />
+</svg>
+
+
+<p> original rectangle with red.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="red"  />
+</svg>
+
+<p>Add that interesting mask back on.</p>
+<svg width="200" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+
+    <radialGradient id="Gradient-12">
+      <stop offset="0%" stop-color="yellow" stop-opacity="1" />
+      <stop offset="100%" stop-color="red" stop-opacity="1" />
+    </radialGradient>
+
+    <radialGradient id="Gradient-11">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="50%" stop-color="white" stop-opacity="0" />
+      <stop offset="55%" stop-color="white" stop-opacity=".1" />
+      <stop offset="56%" stop-color="white" stop-opacity="0" />
+      <stop offset="65%" stop-color="white" stop-opacity=".2" />
+      <stop offset="66%" stop-color="white" stop-opacity="0" />
+      <stop offset="75%" stop-color="white" stop-opacity=".3" />
+      <stop offset="76%" stop-color="white" stop-opacity="0" />
+      <stop offset="85%" stop-color="white" stop-opacity=".4" />
+      <stop offset="86%" stop-color="white" stop-opacity="0" />
+    </radialGradient>
+
+    <mask id="Mask-5">
+      <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-11)"  />
+    </mask>
+
+
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="url(#Gradient-12)"  />
+  <rect x="0" y="0" width="200" height="200" fill="black" mask="url(#Mask-5)" />
+  <circle cx="100" cy="100" r="45" fill="#326B4E" />
+</svg>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
 
